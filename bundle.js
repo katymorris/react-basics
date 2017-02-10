@@ -59,13 +59,16 @@
 	//Libs
 	var PLAYERS = [{
 		name: "Katy Morris",
-		score: 34
+		score: 34,
+		id: 1
 	}, {
 		name: "Ron Morris",
-		score: 67
+		score: 67,
+		id: 2
 	}, {
 		name: "Hugin Morris",
-		score: 98
+		score: 98,
+		id: 3
 	}];
 
 	function Header(props) {
@@ -123,6 +126,7 @@
 	Counter.propTypes = {
 		score: _react2.default.PropTypes.string.isRequired
 	};
+
 	function Application(props) {
 		return _react2.default.createElement(
 			'div',
@@ -131,8 +135,9 @@
 			_react2.default.createElement(
 				'div',
 				{ className: 'players' },
-				_react2.default.createElement(Player, { name: 'Katy Morris', score: 85 }),
-				_react2.default.createElement(Player, { name: 'Ron Morris', score: 33 })
+				props.players.map(function (player) {
+					return _react2.default.createElement(Player, { name: player.name, score: player.score, key: player.id });
+				})
 			)
 		);
 	}
@@ -140,7 +145,8 @@
 		title: _react2.default.PropTypes.string,
 		players: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
 			name: _react2.default.PropTypes.string.isRequired,
-			score: _react2.default.PropTypes.number.isRequired
+			score: _react2.default.PropTypes.number.isRequired,
+			id: _react2.default.PropTypes.number.isRequired
 		})).isRequired
 	};
 
